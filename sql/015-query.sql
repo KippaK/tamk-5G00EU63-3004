@@ -1,0 +1,3 @@
+SELECT DISTINCT job 
+FROM emp
+ORDER BY job ASC;
