@@ -1,1 +1,1 @@
-.tables
+show tables;
