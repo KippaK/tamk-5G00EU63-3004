@@ -2,7 +2,7 @@
 -- Date: 2024-02-06
 -- File: 011-list-tables.sql
 
-show tables
-
+.tables
 
 -- End of file
+
