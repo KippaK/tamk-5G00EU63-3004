@@ -1,5 +1,3 @@
-SELECT  ename,
-        sal
+SELECT  ename, sal
 FROM emp
-WHERE   sal < 1500
-OR      sal > 2850;
+WHERE sal < 1500 OR sal > 2850;

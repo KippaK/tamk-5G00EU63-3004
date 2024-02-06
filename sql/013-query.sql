@@ -1,5 +1,2 @@
-SELECT  ename,
-        job,
-        hiredate,
-        empno
+SELECT ename, job, hiredate, empno
 FROM emp; 
