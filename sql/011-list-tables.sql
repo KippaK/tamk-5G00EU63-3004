@@ -3,6 +3,6 @@
 -- File: 011-list-tables.sql
 
 show tables
-;
+
 
 -- End of file
