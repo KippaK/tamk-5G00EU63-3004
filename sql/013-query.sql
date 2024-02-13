@@ -1,6 +1,6 @@
 -- Author: Antti Venetjoki <antti.venetjoki@gmail.com>
--- Date: 2024-02-06
--- File: 011-list-tables.sql
+-- Date: 2024-02-13
+-- File: 013-query.sql
 
 SELECT  ename
         , job
@@ -10,4 +10,3 @@ FROM    emp
 ; 
 
 -- End of file
-
