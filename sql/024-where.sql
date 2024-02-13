@@ -4,6 +4,6 @@
 
 SELECT  ename, hiredate
 FROM emp
-WHERE hiredate BETWEEN '1981-02-20' AND '1981-05-01';
+WHERE hiredate >= '1981-02-20' AND hiredate <= '1981-05-01';
 
 -- End of file
