@@ -11,7 +11,7 @@ FROM
 JOIN 
 		emp m ON e.mgr = m.empno
 WHERE 
-		m.ename = 'BLAKE'
+		UPPER(m.ename) = 'BLAKE'
 ORDER BY 	
 		"new salary" ASC,
 		e.ename ASC;
