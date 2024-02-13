@@ -5,7 +5,7 @@
 SELECT 	
 		e.ename,
 		e.sal,
-		ROUND(e.sal * 1.15, 2) AS new_salary
+		ROUND(e.sal * 1.15, 2) AS "new salary"
 FROM 
 		emp e
 JOIN 
@@ -13,7 +13,7 @@ JOIN
 WHERE 
 		m.ename = 'BLAKE'
 ORDER BY 	
-		new_salary ASC,
+		"new salary" ASC,
 		e.ename ASC;
 	
 
