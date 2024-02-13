@@ -1,0 +1,20 @@
+-- Author: Antti Venetjoki <antti.venetjoki@tuni.fi>
+-- Date: 2024-02-13
+-- File: 031-ordeer-by.sql
+
+SELECT 	
+		e.ename,
+		e.sal,
+		ROUND(e.sal * 1.15, 2) AS new_salary
+FROM 
+		emp e
+JOIN 
+		emp m ON e.mgr = m.empno
+WHERE 
+		m.ename = 'BLAKE'
+ORDER BY 	
+		new_salary ASC,
+		e.ename ASC;
+	
+
+-- End of file
