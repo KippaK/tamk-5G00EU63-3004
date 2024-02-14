@@ -11,7 +11,7 @@ FROM
 JOIN
     dept d ON e.deptno = d.deptno
 WHERE
-    e.loc = 'DALLAS' OR UPPER(e.job) = 'SALESMAN'
+    d.loc = 'DALLAS' OR UPPER(e.job) = 'SALESMAN'
 ORDER BY
     e.ename ASC;
 
