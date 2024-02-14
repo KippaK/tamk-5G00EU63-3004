@@ -3,7 +3,7 @@
 -- File: 082-group.sql
 
 SELECT
-    COUNT(*) AS "Count of Dept 30"
+    COUNT(*) AS "count of d"
 FROM
     emp
 WHERE

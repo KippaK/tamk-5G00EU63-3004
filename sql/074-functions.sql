@@ -5,9 +5,9 @@
 SELECT
     ename,
     CASE
-        WHEN ename LIKE 'a%' THEN LOWER(job)
-        WHEN ename LIKE 'm%' THEN LOWER(job)
-        WHEN ename LIKE 'j%' THEN LOWER(job)
+        WHEN LOWER(ename) LIKE 'a%' THEN LOWER(job)
+        WHEN LOWER(ename) LIKE 'm%' THEN LOWER(job)
+        WHEN LOWER(ename) LIKE 'j%' THEN LOWER(job)
         ELSE job
     END AS job
 FROM

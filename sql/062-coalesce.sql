@@ -4,8 +4,8 @@
 
 SELECT
     ename AS Name,
-    (sal - sal * 0.31) + COALESCE((comm - comm * 0.20), 0) AS Net_Income,
-    sal * 0.31 AS Tax
+    COALESCE((COALESCE(sal, 0) - COALESCE(sal, 0) * 0.31) + COALESCE((comm - COALESCE(comm, 0) * 0.20), 0), 0) AS Net_Income,
+    COALESCE(sal, 0) * 0.31 AS Tax
 FROM
     emp
 ORDER BY

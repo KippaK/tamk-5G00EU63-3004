@@ -2,19 +2,25 @@
 -- Date: 2024-02-15
 -- File: 051-case.sql
 
-UPDATE emp
-SET job = 'SALES PERSON'
-WHERE UPPER(job) = 'SALESMAN';
-
-;
+WITH updated_emp AS (
+    SELECT
+        empno,
+        ename,
+        CASE
+            WHEN UPPER(job) = 'SALESMAN' THEN 'SALES PERSON'
+            ELSE job
+        END AS updated_job
+    FROM
+        emp
+)
 
 SELECT
     ename AS Name,
-    job AS 'New Job Name'
+    updated_job AS 'New Job Name'
 FROM
-    emp
+    updated_emp
 ORDER BY
-    job ASC,
+    updated_job ASC,
     ename ASC;
 
 -- End of file

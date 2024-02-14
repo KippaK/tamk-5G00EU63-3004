@@ -8,7 +8,7 @@ SELECT
 FROM
     emp
 WHERE
-    job IN ('MANAGER', 'PRESIDENT')
+    UPPER(job) IN ('MANAGER', 'PRESIDENT')
 GROUP BY
     job;
 

@@ -5,12 +5,12 @@
 SELECT
     empno,
     ename,
-    ROUND(sal * 1.15) AS new_salary,
+    ROUND(sal * 1.15) AS 'new salary',
     ROUND(sal * 0.15) AS increase
 FROM
     emp
 ORDER BY
     ename ASC,
-    new_salary ASC;
+    'new salary' ASC;
 
 -- End of file

@@ -2,22 +2,27 @@
 -- Date: 2024-02-15
 -- File: 052-case.sql
 
-UPDATE emp
-SET comm = CASE
-    WHEN deptno = 30 AND (comm IS NULL OR comm = 0) THEN 100
-    WHEN deptno = 30 THEN comm * 1.05
-    ELSE comm
-END;
-
-;
+WITH updated_emp AS (
+    SELECT
+        empno,
+        ename,
+        CASE
+            WHEN deptno = 30 AND (comm IS NULL OR comm = 0) THEN 100
+            WHEN deptno = 30 THEN comm * 1.05
+            ELSE comm
+        END AS updated_comm
+    FROM
+        emp
+)
 
 SELECT
     ename,
-    comm
+    updated_comm AS comm
 FROM
-    emp
+    updated_emp
 ORDER BY
-    comm ASC,
+    updated_comm ASC,
     ename ASC;
 
 -- End of file
+
