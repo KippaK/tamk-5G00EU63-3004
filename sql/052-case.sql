@@ -9,6 +9,8 @@ SET comm = CASE
     ELSE comm
 END;
 
+;
+
 SELECT
     ename,
     comm

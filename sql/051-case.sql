@@ -6,6 +6,8 @@ UPDATE emp
 SET job = 'SALES PERSON'
 WHERE UPPER(job) = 'SALESMAN';
 
+;
+
 SELECT
     ename AS Name,
     job AS 'New Job Name'
