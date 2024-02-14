@@ -7,9 +7,9 @@ SELECT
     d.dname AS department_name,
     d.loc AS location
 FROM
-    emp e
+    emp AS e
 JOIN
-    dept d ON e.deptno = d.deptno
+    dept AS d ON e.deptno = d.deptno
 WHERE
     e.comm IS NOT NULL
 ORDER BY

@@ -7,9 +7,9 @@ SELECT
     e.deptno AS department_number,
     d.dname AS department_name
 FROM
-    emp e
+    emp AS e
 JOIN
-    dept d ON e.deptno = d.deptno
+    dept AS d ON e.deptno = d.deptno
 WHERE
     d.loc = 'DALLAS' OR UPPER(e.job) = 'SALESMAN'
 ORDER BY

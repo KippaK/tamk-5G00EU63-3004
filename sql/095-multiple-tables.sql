@@ -8,13 +8,13 @@ SELECT
     e.deptno AS department_number,
     d.dname AS department_name
 FROM
-    emp e
+    emp AS e
 JOIN
-    dept d ON e.deptno = d.deptno
+    dept AS d ON e.deptno = d.deptno
 WHERE
-    (d.dname = 'ACCOUNTING' AND e.sal > 1000)
-    OR (d.dname = 'SALES' AND e.sal > 1000)
-    OR (d.dname = 'OPERATIONS' AND e.sal > 1000)
+    (UPPER(d.dname) = 'ACCOUNTING' AND e.sal > 1000)
+    OR (UPPER(d.dname) = 'SALES' AND e.sal > 1000)
+    OR (UPPER(d.dname) = 'OPERATIONS' AND e.sal > 1000)
 ORDER BY
     e.ename ASC;
 

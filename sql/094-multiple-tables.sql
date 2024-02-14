@@ -10,7 +10,7 @@ FROM
 JOIN
     dept d ON e.deptno = d.deptno
 WHERE
-    e.ename LIKE '%a%' AND e.sal > 1100 AND e.sal <= 2200
+    UPPER(e.ename) LIKE '%A%' AND e.sal > 1100 AND e.sal <= 2200
 ORDER BY
     e.ename ASC;
 

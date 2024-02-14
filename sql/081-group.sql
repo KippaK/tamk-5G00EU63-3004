@@ -3,13 +3,10 @@
 -- File: 081-group.sql
 
 SELECT
-    job AS Job_Title,
-    COUNT(*) AS "Count of Managers"
+    COUNT(*) AS "count of m"
 FROM
     emp
 WHERE
     UPPER(job) IN ('MANAGER', 'PRESIDENT')
-GROUP BY
-    job;
 
 -- End of file
