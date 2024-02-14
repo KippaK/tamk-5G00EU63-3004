@@ -5,7 +5,7 @@
 SELECT
 	deptno AS Dept,
     ename AS Employee,
-    CAST(sal * 12 * 0.31 AS INT) AS Taxes
+    sal * 12 * 0.31 AS Taxes
 FROM
     emp
 WHERE
