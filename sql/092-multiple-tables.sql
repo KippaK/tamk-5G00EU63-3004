@@ -3,7 +3,7 @@
 -- File: 092-multiple-tables.sql
 
 SELECT DISTINCT
-    e.job AS job_name
+    e.job
 FROM
     emp AS e
 JOIN

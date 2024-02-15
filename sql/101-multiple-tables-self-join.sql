@@ -12,7 +12,7 @@ FROM
 JOIN
     emp AS emp ON emp.mgr = mgr.empno
 WHERE
-    mgr.ename IN ('BLAKE', 'FORD', 'SCOTT')
+    UPPER(mgr.ename) IN ('BLAKE', 'FORD', 'SCOTT')
 ORDER BY
     "Manager" ASC,
     "Employee" ASC;

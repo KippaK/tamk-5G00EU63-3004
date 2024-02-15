@@ -3,11 +3,11 @@
 -- File: 112-create-table.sql
 
 CREATE TABLE football (
-    id INT PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     first VARCHAR(255) NOT NULL,
     last VARCHAR(255) NOT NULL,
     team VARCHAR(255) NOT NULL,
-    comment TEXT
+    comment VARCHAR(255)
 );
 
 -- End of file

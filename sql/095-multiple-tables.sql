@@ -3,10 +3,10 @@
 -- File: 095-multiple-tables.sql
 
 SELECT
-    e.ename AS employee_name,
-    e.job AS job_name,
-    e.deptno AS department_number,
-    d.dname AS department_name
+    e.ename,
+    e.job,
+    e.deptno,
+    d.dname
 FROM
     emp AS e
 JOIN

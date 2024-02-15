@@ -3,9 +3,9 @@
 -- File: 091-multiple-tables.sql
 
 SELECT
-    e.ename AS employee_name,
-    e.deptno AS department_number,
-    d.dname AS department_name
+    e.ename,
+    e.deptno,
+    d.dname
 FROM
     emp AS e
 JOIN

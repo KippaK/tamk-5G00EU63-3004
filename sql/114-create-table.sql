@@ -3,10 +3,10 @@
 -- File: 114-create-table.sql
 
 CREATE TABLE inventory (
-    id INT PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     item VARCHAR(255) NOT NULL,
-    worth INT,
-    comment TEXT
+    worth INTEGER,
+    comment VARCHAR(255)
 );
 
 -- End of file

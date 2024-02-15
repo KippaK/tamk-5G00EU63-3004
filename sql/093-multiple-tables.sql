@@ -3,9 +3,9 @@
 -- File: 093-multiple-tables.sql
 
 SELECT
-    e.ename AS employee_name,
-    d.dname AS department_name,
-    d.loc AS location
+    e.ename,
+    d.dname,
+    d.loc
 FROM
     emp AS e
 JOIN
