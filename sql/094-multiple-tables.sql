@@ -3,8 +3,8 @@
 -- File: 094-multiple-tables.sql
 
 SELECT
-    e.ename AS employee_name,
-    d.dname AS department_name
+    e.ename ,
+    d.dname 
 FROM
     emp AS e
 JOIN
