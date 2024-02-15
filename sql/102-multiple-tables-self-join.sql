@@ -10,6 +10,8 @@ FROM
     emp e
 JOIN emp c ON e.deptno = c.deptno AND e.empno <> c.empno
 ORDER BY
-    Dept, Employee, Colleague;
+    Dept ASC, 
+	Employee ASC, 
+	Colleague ASC;
 
 -- End of file

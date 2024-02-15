@@ -6,10 +6,10 @@ SELECT
     e.ename
 FROM
     emp e
-JOIN emp m ON e.mgr = m.empno
+JOIN emp AS m ON e.mgr = m.empno
 WHERE
     e.sal > m.sal
 ORDER BY
-    e.ename;
+    e.ename ASC;
 
 -- End of file

@@ -9,11 +9,13 @@ SELECT
     m.ename AS Manager
 FROM
     emp e
-JOIN emp m ON e.mgr = m.empno
-JOIN dept d ON e.deptno = d.deptno
+JOIN emp AS m ON e.mgr = m.empno
+JOIN dept AS d ON e.deptno = d.deptno
 WHERE
-    m.ename IN ('BLAKE', 'FORD', 'JONES') AND m.sal > ALL (SELECT sal FROM emp WHERE deptno = 3)
+    UPPER(m.ename) IN ('BLAKE', 'FORD', 'JONES') AND m.sal > ALL (SELECT sal FROM emp WHERE deptno = 3)
 ORDER BY
-    Location, Manager, Employee;
+    Location ASC, 
+	Manager ASC,
+	Employee ASC;
 
 -- End of file

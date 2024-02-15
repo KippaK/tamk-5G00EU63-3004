@@ -3,7 +3,7 @@
 -- File: 111-create-table.sql
 
 CREATE TABLE person (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY NOT NULL UNIQUE,
     last VARCHAR(255),
     first VARCHAR(255),
     phone VARCHAR(20),

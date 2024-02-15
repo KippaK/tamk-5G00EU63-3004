@@ -11,7 +11,7 @@ FROM
     emp m
 JOIN emp e ON m.empno = e.mgr
 WHERE
-    m.ename IN ('BLAKE', 'FORD', 'SCOTT')
+    UPPER(m.ename) IN ('BLAKE', 'FORD', 'SCOTT')
 ORDER BY
     Manager, Employee;
 
