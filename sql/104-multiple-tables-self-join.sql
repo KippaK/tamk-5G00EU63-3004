@@ -12,11 +12,11 @@ FROM
 JOIN emp AS e2 ON e1.mgr = e2.empno
 JOIN dept AS d ON e1.deptno = d.deptno
 WHERE
-    e2.sal > e1.sal
-    AND e2.ename IN ('BLAKE', 'FORD', 'JONES')
+	UPPER(e2.ename) IN ('BLAKE', 'FORD', 'JONES')
+	AND m.sal > (SELECT hisal FROM salgrade WHERE grade = 3)
 ORDER BY
-    d.loc,
-    e2.ename,
-    e1.ename;
+    d.loc ASC,
+    e2.ename ASC,
+    e1.ename ASC;
 
 -- End of file
