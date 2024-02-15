@@ -4,9 +4,9 @@
 
 CREATE TABLE person (
     id INTEGER PRIMARY KEY,
-    last VARCHAR(255) NOT NULL,
-    first VARCHAR(255) NOT NULL,
-    phone VARCHAR(20) CHECK (phone GLOB '+[0-9 ]*'),
+    last VARCHAR(255),
+    first VARCHAR(255),
+    phone VARCHAR(20),
     zip VARCHAR(10),
     city VARCHAR(255),
     address VARCHAR(255)

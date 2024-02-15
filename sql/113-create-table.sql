@@ -4,10 +4,10 @@
 
 CREATE TABLE weather (
     id INTEGER PRIMARY KEY,
-    time_of_reading TIMESTAMP,
-    high DECIMAL(5,1),
-    low DECIMAL(5,1),
-    sig VARCHAR(10),
+    time_of_reading DATETIME,
+    high FLOAT,
+    low FLOAT,
+    sig VARCHAR(2),
     comment TEXT
 );
 

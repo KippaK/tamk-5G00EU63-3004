@@ -4,10 +4,10 @@
 
 CREATE TABLE football (
     id INTEGER PRIMARY KEY,
-    first VARCHAR(255) NOT NULL,
-    last VARCHAR(255) NOT NULL,
-    team VARCHAR(255) NOT NULL,
-    comment VARCHAR(255)
+    first VARCHAR(255),
+    last VARCHAR(255),
+    team VARCHAR(255),
+    comment TEXT
 );
 
 -- End of file

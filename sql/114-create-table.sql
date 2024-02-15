@@ -4,9 +4,9 @@
 
 CREATE TABLE inventory (
     id INTEGER PRIMARY KEY,
-    item VARCHAR(255) NOT NULL,
+    item VARCHAR(255),
     worth INTEGER,
-    comment VARCHAR(255)
+    comment TEXT
 );
 
 -- End of file
