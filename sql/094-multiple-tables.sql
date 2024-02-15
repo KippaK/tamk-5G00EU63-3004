@@ -8,7 +8,7 @@ SELECT
 FROM
     emp e
 JOIN
-    dept d AS d ON e.deptno = d.deptno
+    dept d ON e.deptno = d.deptno
 WHERE
     UPPER(e.ename) LIKE '%A%' AND e.sal > 1100 AND e.sal <= 2200
 ORDER BY

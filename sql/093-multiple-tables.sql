@@ -11,7 +11,7 @@ FROM
 JOIN
     dept AS d ON e.deptno = d.deptno
 WHERE
-    e.comm IS NOT NULL
+    e.comm > 0
 ORDER BY
     e.ename ASC;
 

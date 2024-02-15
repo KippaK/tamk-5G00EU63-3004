@@ -11,6 +11,6 @@ JOIN
 WHERE
     UPPER(d.loc) IN ('BOSTON', 'NEW YORK')
 ORDER BY
-    job_name ASC;
+    job ASC;
 
 -- End of file
