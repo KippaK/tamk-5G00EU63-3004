@@ -5,17 +5,18 @@
 SELECT
     d.loc AS Location,
     d.dname AS Department,
-    e.ename AS Employee,
-    m.ename AS Manager
+    e1.ename AS Employee,
+    e2.ename AS Manager
 FROM
-    emp AS e
-JOIN emp AS m ON e.mgr = m.empno
-JOIN dept AS d ON e.deptno = d.deptno
+    emp AS e1
+JOIN emp AS e2 ON e1.mgr = e2.empno
+JOIN dept AS d ON e1.deptno = d.deptno
 WHERE
-    UPPER(m.ename) IN ('BLAKE', 'FORD', 'JONES') AND m.sal > ALL (SELECT sal FROM emp WHERE deptno = 3)
+    e2.sal > e1.sal
+    AND e2.ename IN ('BLAKE', 'FORD', 'JONES')
 ORDER BY
-    Location ASC, 
-	Manager ASC,
-	Employee ASC;
+    d.loc,
+    e2.ename,
+    e1.ename;
 
 -- End of file
