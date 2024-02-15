@@ -8,11 +8,12 @@ SELECT
     e.ename AS Employee,
     e.empno AS "Emp#"
 FROM
-    emp m
-JOIN emp e ON m.empno = e.mgr
+    emp AS m
+JOIN emp AS e ON m.empno = e.mgr
 WHERE
     UPPER(m.ename) IN ('BLAKE', 'FORD', 'SCOTT')
 ORDER BY
-    Manager, Employee;
+    Manager ASC, 
+	Employee ASC;
 
 -- End of file

@@ -5,7 +5,7 @@
 SELECT
     e.ename
 FROM
-    emp e
+    emp AS e
 JOIN emp AS m ON e.mgr = m.empno
 WHERE
     e.sal > m.sal

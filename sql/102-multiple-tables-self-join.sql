@@ -7,7 +7,7 @@ SELECT
     e.ename AS Employee,
     c.ename AS Colleague
 FROM
-    emp e
+    emp AS e
 JOIN emp c ON e.deptno = c.deptno AND e.empno <> c.empno
 ORDER BY
     Dept ASC, 

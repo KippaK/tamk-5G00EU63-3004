@@ -3,7 +3,7 @@
 -- File: 112-create-table.sql
 
 CREATE TABLE football (
-    id INTEGER PRIMARY KEY NOT NULL UNIQUE,
+    Id INTEGER PRIMARY KEY NOT NULL UNIQUE,
     first VARCHAR(255),
     last VARCHAR(255),
     team VARCHAR(255),

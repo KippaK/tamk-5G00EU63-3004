@@ -8,7 +8,7 @@ SELECT
     e.ename AS Employee,
     m.ename AS Manager
 FROM
-    emp e
+    emp AS e
 JOIN emp AS m ON e.mgr = m.empno
 JOIN dept AS d ON e.deptno = d.deptno
 WHERE
