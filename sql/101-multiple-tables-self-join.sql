@@ -3,16 +3,16 @@
 -- File: 101-multiple-tables-self-join.sql
 
 SELECT
-    mgr.ename AS "Manager",
-    mgr.empno AS "Mgr#",
-    emp.ename AS "Employee",
-    emp.empno AS "Emp#"
+    m.ename AS "Manager",
+    m.empno AS "Mgr#",
+    e.ename AS "Employee",
+    e.empno AS "Emp#"
 FROM
-    emp AS mgr
+    emp m
 JOIN
-    emp AS emp ON emp.mgr = mgr.empno
+    emp e ON m.empno = e.mgr
 WHERE
-    UPPER(mgr.ename) IN ('BLAKE', 'FORD', 'SCOTT')
+    m.ename IN ('BLAKE', 'FORD', 'SCOTT')
 ORDER BY
     "Manager" ASC,
     "Employee" ASC;
