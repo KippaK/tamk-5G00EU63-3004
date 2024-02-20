@@ -1,50 +1,47 @@
 // FILE: server.js
 //
-// EXAMPLE CALL
+// Call example:
 //
 // node server.js
-// curl 'http://127.0.0.1:8000/app.js?a=1&b=2'
 
-const http = require('http')
-const url = require('url')
-const util = require('util')
+let sqlite3 = require("sqlite3").verbose();
+let db = new sqlite3.Database("example.db");
+let md5 = require("md5");
 
-const hostname = '127.0.0.1'
-const port = 8000
+require('dotenv').config()
+const PORT_NUMBER = process.env.PORT;
 
-const server = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' })
+const SQL_TABLE_NAME = "test";
+const SQL_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS ${SQL_TABLE_NAME} (id INTEGER UNIQUE NOT NULL PRIMARY KEY, info VARCHAR(1000))";
+const SQL_TABLE_PREPARE = "INSERT INTO ${SQL_TABLE_NAME} (id, info) VALUES (NULL, ?)"
 
-  //   req.url => /app.js?a=1&b=2
-  res.write('request URL: ' + req.url + '\n')
+db.serialize( () => {
 
-  // ---------------------------------------------------
-  // read and parse the request
+	db.run(SQL_TABLE_CREATE);
 
-  const q = url.URL(req.url, true) // returns an URL object
-  console.log('DATA query URL object: ' + q)
-  console.log(util.inspect(q, { showHidden: false, depth: null }))
+	let stmt = db.prepare(SQL_TABLE_PREPARE);
 
-  // ---------------------------------------------------
-  // COMMON VARIABLES: see documentation for module 'url'
-  //
-  // .host      localhost:8080   WARN: can be <null>
-  // .pathname  /server.js
-  // .search    ?a=1&b=2
-  // .query     { key: val, key: val }
+	for (var i = 0; i < 10; i++) {
+		stmt.run("password " + md5(i));
+	}
 
-  res.write('query.pathname: ' + q.pathname + '\n')
-  res.write('query.search: ' + q.search + '\n')
+	stmt.finalize();
 
-  console.log('DATA q.query', q.query)
-  const a = q.query.a
-  const b = q.query.b
-  res.write('Param a: ' + a + '\n')
-  res.write('Param b: ' + b + '\n')
+	db.each("SELECT id, info FROM " + SQL_TABLE_NAME, (err, row) => {
+		if (err)
+			consol.log(err)
+		else
+			console.log(row.id + ": " + row.info);
+	});
 
-  res.end('Response end\n')
-})
+	// Print the rows as JSON
 
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`)
-})
+	db.all("SELECT id, info FROM " + SQL_TABLE_NAME, (err, rows) => {
+		console.log("--- JSON ---\n");
+		console.log(JSON.stringify(rows));
+	});
+});
+
+db.close();
+
+END OF FILE
