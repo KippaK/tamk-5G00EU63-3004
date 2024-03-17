@@ -1,47 +1,55 @@
-// FILE: server.js
-//
-// Call example:
-//
-// node server.js
+// Step 1: Set up Node.js project and install necessary packages
+const express = require('express');
+const sqlite3 = require('sqlite3').verbose();
 
-let sqlite3 = require("sqlite3").verbose();
-let db = new sqlite3.Database("example.db");
-let md5 = require("md5");
+const app = express();
+const port = 8000;
 
-require('dotenv').config()
-const PORT_NUMBER = process.env.PORT;
-
-const SQL_TABLE_NAME = "test";
-const SQL_TABLE_CREATE = "CREATE TABLE IF NOT EXISTS ${SQL_TABLE_NAME} (id INTEGER UNIQUE NOT NULL PRIMARY KEY, info VARCHAR(1000))";
-const SQL_TABLE_PREPARE = "INSERT INTO ${SQL_TABLE_NAME} (id, info) VALUES (NULL, ?)"
-
-db.serialize( () => {
-
-	db.run(SQL_TABLE_CREATE);
-
-	let stmt = db.prepare(SQL_TABLE_PREPARE);
-
-	for (var i = 0; i < 10; i++) {
-		stmt.run("password " + md5(i));
-	}
-
-	stmt.finalize();
-
-	db.each("SELECT id, info FROM " + SQL_TABLE_NAME, (err, row) => {
-		if (err)
-			consol.log(err)
-		else
-			console.log(row.id + ": " + row.info);
-	});
-
-	// Print the rows as JSON
-
-	db.all("SELECT id, info FROM " + SQL_TABLE_NAME, (err, rows) => {
-		console.log("--- JSON ---\n");
-		console.log(JSON.stringify(rows));
-	});
+// Step 2: Create SQLite database connection
+const db = new sqlite3.Database('path/to/your/database/chinook.db', sqlite3.OPEN_READWRITE, (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the chinook database.');
 });
 
-db.close();
+// Step 3: Implement CRUD operations
+// Read all users
+app.get('/api/v1/user', (req, res) => {
+  // Implement logic to fetch all users from the database
+  db.all('SELECT * FROM users', (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json(rows);
+  });
+});
 
-END OF FILE
+// Read single user by ID
+app.get('/api/v1/user/:id', (req, res) => {
+  const id = req.params.id;
+  // Implement logic to fetch a user by ID from the database
+  db.get(`SELECT * FROM users WHERE id = ?`, [id], (err, row) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    if (!row) {
+      res.status(404).json({ message: 'User not found' });
+      return;
+    }
+    res.json(row);
+  });
+});
+
+// Step 4: Handle errors
+app.use((req, res, next) => {
+  res.status(404).json({ message: 'Not found' });
+});
+
+// Step 5: Start the server
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
+
