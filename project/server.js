@@ -45,14 +45,33 @@ app.get('/api/v1/artist', (req, res) => {
     });
 });
 
+app.get('/api/v1/album', (re1, res) => {
+	
+});
+
 app.get('/api/v1/artist/album', (req, res) => {
 	const id = req.query.id;
-	let sql = 'SELECT * FROM albums';
+	let sql = 'SELECT  FROM albums';
 
 	if (!id) {
 		res.status(400).json({ message: 'id required' });
 		return;
 	}
+	if (id) {
+		sql
+	}
+
+	db.all(sql, params, (err, rows) => {
+		if (err) {
+			res.status(500).json({ error: err.message });
+			return;
+		}
+        if (rows.length === 0) {
+            res.status(404).json({ message: 'Artist not found' });
+            return;
+        }
+		res.json(rows);
+	});
 });
 
 // Step 4: Handle errors
