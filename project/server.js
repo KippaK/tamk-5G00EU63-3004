@@ -1,11 +1,9 @@
-// Step 1: Set up Node.js project and install necessary packages
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
 const port = 8000;
 
-// Step 2: Create SQLite database connection
 const db = new sqlite3.Database('chinook.db', sqlite3.OPEN_READWRITE, (err) => {
 	if (err) {
 		console.error(err.message);
@@ -13,7 +11,6 @@ const db = new sqlite3.Database('chinook.db', sqlite3.OPEN_READWRITE, (err) => {
 	console.log('Connected to the chinook database.');
 });
 
-// Fetch all artists or a single artist by ID passed as query parameter
 app.get('/api/v1/artist', (req, res) => {
     const id = req.query.id;
     const name = req.query.name;
@@ -45,42 +42,67 @@ app.get('/api/v1/artist', (req, res) => {
     });
 });
 
-app.get('/api/v1/album', (re1, res) => {
-	
-});
+app.get('/api/v1/album', (req, res) => {
+	const albumId = req.query.albumId;
+	const artistId = req.query.artistId;
+	const albumName = req.query.albumName;
+	const artistName = req.query.artistName;
 
-app.get('/api/v1/artist/album', (req, res) => {
-	const id = req.query.id;
-	let sql = 'SELECT  FROM albums';
+	let sql = 'SELECT '
+	sql += 'al.Title AS \'Album Name\', ';
+	sql += 'al.albumId AS \'Album ID\', ';
+	sql += 'ar.Name AS \'Artist Name\', ' ;
+	sql += 'ar.ArtistId AS \'Artist ID\' ';
+	sql += 'FROM albums AS al ' ;
+	sql += 'JOIN artists AS ar ON al.ArtistId = ar.ArtistId';
 
-	if (!id) {
-		res.status(400).json({ message: 'id required' });
-		return;
+	const params = [];
+
+	if (artistId || artistName || albumId || albumName) {
+		sql += ' WHERE';
 	}
-	if (id) {
-		sql
+	if (artistId) {
+		sql += ' al.artistId = ?';
+		params.push(artistId);
 	}
-
+	if (artistName) {
+		if (params.length > 0) {
+			sql += ' AND'
+		}
+		sql += ' UPPER(ar.Name) = UPPER(?)';
+		params.push(artistName);
+	}
+	if (albumName) {
+		if (params.length > 0) {
+			sql += ' AND'
+		}
+		sql += ' UPPER(al.Title) = UPPER(?)';
+		params.push(albumName);
+	}
+	if (albumId) {
+		if (params.length > 0) {
+			sql += ' AND'
+		}
+		sql += ' al.albumId = ?';
+		params.push(albumId);
+	}
 	db.all(sql, params, (err, rows) => {
 		if (err) {
 			res.status(500).json({ error: err.message });
 			return;
 		}
-        if (rows.length === 0) {
-            res.status(404).json({ message: 'Artist not found' });
-            return;
-        }
+		if (rows.length === 0) {
+		res.status(404).json({ message: 'Album not found' });
+		}
 		res.json(rows);
 	});
+	
 });
 
-// Step 4: Handle errors
 app.use((req, res, next) => {
 	res.status(404).json({ message: 'Not found' });
 });
 
-// Step 5: Start the server
 app.listen(port, () => {
 	console.log(`Server is running on http://localhost:${port}`);
 });
-
