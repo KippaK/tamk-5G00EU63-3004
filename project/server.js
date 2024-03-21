@@ -3,12 +3,14 @@ const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
 const port = 8000;
+const url = 'http://localhost';
+const database = 'chinook';
 
-const db = new sqlite3.Database('chinook.db', sqlite3.OPEN_READWRITE, (err) => {
+const db = new sqlite3.Database(`${database}.db`, sqlite3.OPEN_READWRITE, (err) => {
 	if (err) {
 		console.error(err.message);
 	}
-	console.log('Connected to the chinook database.');
+	console.log(`Connected to the ${database} database.`);
 });
 
 app.get('/api/v1/artist', (req, res) => {
@@ -104,5 +106,5 @@ app.use((req, res, next) => {
 });
 
 app.listen(port, () => {
-	console.log(`Server is running on http://localhost:${port}`);
+	console.log(`Server is running on ${url}:${port}`);
 });
