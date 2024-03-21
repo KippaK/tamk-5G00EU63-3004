@@ -1,10 +1,11 @@
 const express = require('express');
+const dotenv = require('dotenv').config;
 const sqlite3 = require('sqlite3').verbose();
 
 const app = express();
-const port = 8000;
-const url = 'http://localhost';
-const database = 'chinook';
+const port = process.env.PORT || 8000;
+const url = process.env.URL || 'http://localhost';
+const database = process.env.DATABASE || 'chinook';
 
 const db = new sqlite3.Database(`${database}.db`, sqlite3.OPEN_READWRITE, (err) => {
 	if (err) {
