@@ -1,1 +1,1 @@
-use create.sql to reate a database
+use create.sql to create a database and insert.sql to insert data into the database
