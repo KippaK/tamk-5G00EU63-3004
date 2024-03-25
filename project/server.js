@@ -7,7 +7,7 @@ dotenv.config()
 const app = express()
 const port = process.env.PORT || 8000
 const url = process.env.URL || 'http://localhost'
-const database = process.env.DATABASE || 'chinook'
+const database = process.env.DATABASE || 'database'
 
 const db = new sqlite3.Database(`${database}.db`, sqlite3.OPEN_READWRITE, (err) => {
   if (err) {
